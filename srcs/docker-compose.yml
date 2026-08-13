@@ -1,0 +1,31 @@
+services:
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+      dockerfile: mariadb.dockerfile
+    image: mariadb
+    container_name: mariadb_1
+    restart: always
+    env_file:
+      - .env.example
+    secrets:
+      - db_password
+    networks:
+      - inception
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  mariadb_data:
+    driver_opts:
+      type: none
+      device: /home/mgamraou/data/mariadb
+      o: bind
