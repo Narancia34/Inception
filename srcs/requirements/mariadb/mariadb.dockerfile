@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian:bookworm-slim
 
 RUN apt-get update -y \
 	&& apt-get install mariadb-server -y \
