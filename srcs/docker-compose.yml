@@ -14,6 +14,25 @@ services:
       - inception
     volumes:
       - mariadb_data:/var/lib/mysql
+  
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+      dockerfile: wordpress.dockerfile
+    image: wordpress
+    container_name: wordpress_1
+    restart: on-failure
+    depends_on:
+      - mariadb
+    env_file:
+      - .env.example
+    networks:
+      - inception
+    volumes:
+      - wordpress_data:/var/www/html
+    secrets:
+      - db_password
+
 
 secrets:
   db_password:
@@ -29,3 +48,10 @@ volumes:
       type: none
       device: /home/mgamraou/data/mariadb
       o: bind
+
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/mgamraou/data/wordpress

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f /run/secrets/db_password ]; then
+    DB_PASSWORD=$(cat /run/secrets/db_password | tr -d '\r\n')
+fi
+
 # Navigate to the Nginx document root
 cd /var/www/html
 

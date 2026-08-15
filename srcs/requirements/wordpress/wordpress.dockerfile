@@ -13,4 +13,4 @@ RUN chmod +x /usr/local/bin/wordpress.sh
 
 WORKDIR /var/www/html
 
-ENTRYPOINT["usr/local/bin/wordpress.sh"]
+ENTRYPOINT ["/usr/local/bin/wordpress.sh"]
