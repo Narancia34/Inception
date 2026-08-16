@@ -9,9 +9,6 @@ RUN openssl req -x509 -newkey rsa:2048 -nodes -batch \
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-RUN mkdir -p /test
-COPY index.html /test/index.html
-
 EXPOSE 443
 
 CMD ["-g", "daemon off;"]

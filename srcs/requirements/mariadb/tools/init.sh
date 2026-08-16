@@ -19,7 +19,7 @@ if [ ! -d "/var/lib/mysql/$DATA_BASE" ]; then
     mariadbd --user=mysql &
     pid=$!
 
-    # 3. Robust health check instead of 'sleep 2'
+    # 3. health check
     until mariadb-admin ping >/dev/null 2>&1; do
         sleep 1
     done
